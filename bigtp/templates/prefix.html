@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    Prefix Code
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-register" style="color: white;">
+            {{ data.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                Prefix Code
+            </h1>
+            <br>
+            {{ data.codes.label() }}
+            {{ data.codes(class="form-control", placeholder="code1,code2,code3...coden") }}
+            {{ data.probabilities.label() }}
+            {{ data.probabilities(class="form-control", placeholder="proba1,proba2,proba3,...,proban") }}
+            {{ data.submit(class="btn btn-lg btn-block btn-primary", id="submitBtn") }}
+            <br>
+            
+        </form>
+
+        {% if form_submitted %}
+            <div id="prefixCodeResults" style="color: white;">
+                {% if is_prefix_code %}
+                    <h2 class="h3 mb-3 font-weight-normal">
+                        The entered codes form a Prefix Code.
+                    </h2>
+                    <p class="h3 mb-2 font-weight-bold">L'entropie de la source: {{ out[0] }}</p>
+                    <p class="h3 mb-2 font-weight-bold">l'efficacite du codage de Shanon: {{ out[1] }} %</p>
+                {% else %}
+                    <h2 class="h3 mb-3 font-weight-normal">
+                        The entered codes do not form a Prefix Code.
+                    </h2>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

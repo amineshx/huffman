@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+    Shanon Fano
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-register" style="color: white;">
+            {{ data.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                Shanon Code
+            </h1>
+            <br>
+            {{ data.charchain.label() }}
+            {{ data.charchain(class="form-control", placeholder="enter a string ") }}
+        
+            
+            {{ data.submit(class="btn btn-lg btn-block btn-primary") }}
+            <br>
+            <br>
+        </form>
+        {% if form_submitted %}
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Char</th>
+                    <th scope="col">Shanon Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(0,dataleng) %}
+                <tr>
+                    <td>{{ out[0][i] }}</td>
+                    <td>{{ out[1][i] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="h3 mb-2 font-weight-bold">L'entropie de la source: {{ out[2] }}</p>
+        <p class="h3 mb-2 font-weight-bold">l'efficacite du codage de Shanon: {{ out[3] }} %</p>
+        {% endif %}    
+    </div>
+</body>
+{% endblock %}
+
